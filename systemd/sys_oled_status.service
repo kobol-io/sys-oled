@@ -1,0 +1,9 @@
+[Unit]
+Description=System Status on OLED Display
+After=sys_oled_start.service
+
+[Service]
+ExecStart=/usr/bin/python /usr/local/bin/sys_oled.py --display sh1106
+
+[Install]
+WantedBy=multi-user.target
