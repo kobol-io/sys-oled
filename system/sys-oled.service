@@ -2,7 +2,7 @@
 Description=System Starting on OLED Display
 
 [Service]
-EnvironmentFile=/etc/sys-oled.conf
+EnvironmentFile=/usr/local/etc/sys-oled.conf
 ExecStart=/usr/bin/python /usr/local/bin/sys-oled --display ${DISPLAY}
 
 [Install]
