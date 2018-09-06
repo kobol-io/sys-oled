@@ -13,7 +13,7 @@ from PIL import Image, ImageDraw, ImageFont
 interval = 4
 
 font_path = os.path.abspath(os.path.join(os.path.dirname(__file__),
-                                'font', 'C&C Red Alert [INET].ttf'))
+                                '../share/sys-oled', 'C&C Red Alert [INET].ttf'))
 font = ImageFont.truetype(font_path, 12)
 
 def get_device(actual_args=None):
@@ -81,7 +81,7 @@ def status(device):
     d.line([(0,13),(128,13)])
     d.text((0, 15), mem_usage(), font=font, fill="white")
     d.text((0, 27), disk_usage('sd', '/'), font=font, fill="white")
-    d.text((0, 39), disk_usage('md0', '/'), font=font, fill="white")
+    d.text((0, 39), disk_usage('md0', '/mnt/md0'), font=font, fill="white")
     d.text((0, 51), network('eth0'), font=font, fill="white")
 
     device.display(txt.convert(device.mode))
@@ -89,7 +89,7 @@ def status(device):
 
 def logo(device, msg):
     img_path = os.path.abspath(os.path.join(os.path.dirname(__file__),
-        'img', 'helios4_logo.png'))
+        '../share/sys-oled', 'helios4_logo.png'))
     logo = Image.open(img_path).convert("RGBA")
 
     background = Image.new("RGBA", device.size)
@@ -109,16 +109,11 @@ signal.signal(signal.SIGTERM, sigterm_handler)
 
 
 def main():
-    if 'HELIOS4_STARTING' in os.environ:
-        logo(device, "System Starting...")
-        device.persist = True
-	time.sleep(6)
-    else:
-        while True:
-            status(device)
-            time.sleep(interval)
-	    logo(device, host_time())
-            time.sleep(interval)
+    while True:
+        status(device)
+        time.sleep(interval)
+        logo(device, host_time())
+        time.sleep(interval)
 
 if __name__ == "__main__":
     try:

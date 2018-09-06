@@ -1,9 +1,0 @@
-[Unit]
-Description=System Starting on OLED Display
-
-[Service]
-Environment="SYSTEM_STARTING=1"
-ExecStart=/usr/bin/python /usr/local/bin/sys_oled.py --display sh1106
-
-[Install]
-WantedBy=sysinit.target
