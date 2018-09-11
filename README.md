@@ -1,5 +1,5 @@
 # Description
-Application to display Helios4 system status for i2c OLED screen.
+Application to display Helios4 System Status on I2C OLED display.
 
 ![system status](capture/luma_000001.png)
 ![system time](capture/luma_000002.png)
@@ -19,7 +19,8 @@ sudo ./install.sh
 
 ### Configure OLED display model
 
-1. Test which display model is the correct one by launching manually **sys-oled** and trying different display model as parameter.
+1. Test which display model is the correct one by launching manually **sys-oled** and trying different display model as parameter until the System Status is showing correctly on the display.
+
 Example :
 
 ```
@@ -30,7 +31,7 @@ sudo sys-oled --display sh1106
 
 Supported values : ssd1306 (default), ssd1322, ssd1325, ssd1327, ssd1331, ssd1351, sh1106.
 
-2. Once you know which display model is the correct one, edit */etc/sys-oled.conf* and update the **DISPLAY=** line.
+2. Once you know which display model is the correct one, edit */usr/local/etc/sys-oled.conf* and update the **DISPLAY=** line.
 
 
 ### Configure storage info
