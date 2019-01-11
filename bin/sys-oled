@@ -40,8 +40,11 @@ def bytes2human(n):
         prefix[s] = 1 << (i + 1) * 10
     for s in reversed(symbols):
         if n >= prefix[s]:
-            value = int(float(n) / prefix[s])
-            return '%s%s' % (value, s)
+            value = float(n) / prefix[s]
+            if s in ['K', 'M']:
+                return '%d%s' % (int(value), s)
+            else:
+                return '%.1f%s' % (value, s)
     return "%sB" % n
 
 
@@ -54,7 +57,7 @@ def cpu_usage():
 
 def mem_usage():
     usage = psutil.virtual_memory()
-    return "mem: %s / %s %.0f%%" \
+    return "mem: %s / %s - %.0f%%" \
         % (bytes2human(usage.used), bytes2human(usage.total), usage.percent)
 
 
