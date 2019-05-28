@@ -3,7 +3,7 @@
 
 INSTALL_PATH="/usr/local/"
 SYSTEMD_PATH="/etc/systemd/"
-DEPS="python-dev python-pip python-setuptools python-psutil libfreetype6-dev libjpeg-dev build-essential"
+DEPS="python-dev python-pip python-setuptools python-configparser python-psutil libfreetype6-dev libjpeg-dev build-essential"
 
 if [ "$(id -u)" != "0" ]; then
     echo "This script must be run as root!"
@@ -18,8 +18,8 @@ echo "Installing luma.oled library"
 pip install --upgrade luma.oled
 
 echo "Installing sys-oled files"
+cp -fv etc/sys-oled.conf  /etc
 cp -frv bin "$INSTALL_PATH"
-cp -frv etc  "$INSTALL_PATH"
 cp -frv share "$INSTALL_PATH"
 cp -frv system "$SYSTEMD_PATH"
 
