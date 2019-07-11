@@ -3,7 +3,7 @@
 
 INSTALL_PATH="/usr/local/"
 SYSTEMD_PATH="/etc/systemd/"
-DEPS="python-dev python-pip python-setuptools python-configparser python-psutil libfreetype6-dev libjpeg-dev build-essential"
+DEPS="python-dev python-pip python-setuptools python-wheel python-configparser python-psutil libfreetype6-dev libjpeg-dev build-essential"
 
 if [ "$(id -u)" != "0" ]; then
     echo "This script must be run as root!"
