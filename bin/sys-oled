@@ -74,10 +74,10 @@ def bytes2human(n):
 
 
 def cpu_usage():
-    uptime = datetime.now().replace(microsecond=0) - datetime.fromtimestamp(psutil.boot_time())
+    uptime = datetime.now().replace(second=0, microsecond=0) - datetime.fromtimestamp(psutil.boot_time())
     av1, av2, av3 = os.getloadavg()
     return "ld: %.1f %.1f %.1f up: %s" \
-        % (av1, av2, av3, str(uptime).split(',')[0])
+        % (av1, av2, av3, str(uptime).split(',')[0][:-3])
 
 
 def mem_usage():
@@ -100,7 +100,7 @@ def network(iface):
 def host_time():
     now = datetime.now()
     hostname = os.uname()[1]
-    return hostname + " - " + now.strftime("%Y-%m-%d %H:%M")
+    return hostname + " " + now.strftime("%Y-%m-%d %H:%M")
 
 def display_info(device):
     txt = Image.new('RGBA', device.size)
